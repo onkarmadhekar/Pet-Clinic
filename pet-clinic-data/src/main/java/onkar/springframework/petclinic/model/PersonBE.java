@@ -1,6 +1,6 @@
 package onkar.springframework.petclinic.model;
 
-public class PersonBE {
+public class PersonBE extends BaseEntity{
 
     private String firstName;
     private String lastName;
