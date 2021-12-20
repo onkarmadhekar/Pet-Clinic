@@ -1,13 +1,23 @@
 package onkar.springframework.petclinic.contoller;
 
+import onkar.springframework.petclinic.services.VetServices;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/vets")
 @Controller
 public class VetIndexController {
 
-    @RequestMapping({"/vets","/vets/index","/vets/index.html"})
-    public String listVets(){
+    private final VetServices vetServices;
+
+    public VetIndexController(VetServices vetServices) {
+        this.vetServices = vetServices;
+    }
+
+    @RequestMapping({"","/","/index","/index.html"})
+    public String listVets(Model model){
+        model.addAttribute("vets",vetServices.findAll());
         return "vets/index";
     }
 }
