@@ -4,21 +4,18 @@ import onkar.springframework.petclinic.model.Owner;
 import onkar.springframework.petclinic.model.Vet;
 import onkar.springframework.petclinic.services.OwnerServices;
 import onkar.springframework.petclinic.services.VetServices;
-import onkar.springframework.petclinic.services.map.OwnerMapServices;
-import onkar.springframework.petclinic.services.map.VetMapServices;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DataLoader implements CommandLineRunner {
-
     private final OwnerServices ownerServices;
     private final VetServices vetServices;
 
 
-    public DataLoader(){
-        ownerServices = new OwnerMapServices();
-        vetServices = new VetMapServices();
+    public DataLoader(OwnerServices ownerServices, VetServices vetServices){
+        this.ownerServices = ownerServices;
+        this.vetServices = vetServices;
     }
     @Override
     public void run(String... args) throws Exception {
@@ -33,7 +30,7 @@ public class DataLoader implements CommandLineRunner {
         Owner owner2 = new Owner();
         owner2.setId(2L);
         owner2.setFirstName("M.S.");
-        owner2.setFirstName("Dhoni");
+        owner2.setLastName("Dhoni");
 
         ownerServices.save(owner2);
 
